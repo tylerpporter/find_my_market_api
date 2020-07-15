@@ -1,8 +1,8 @@
-language: python3
+language: python
 python:
   - '3.7'
 install:
+  - pip freeze > requirements.txt
   - pip install -r requirements.txt
-  - pip install . 
-# script:
-#   - pytest
+script:
+  - python -m unittest
