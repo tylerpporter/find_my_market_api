@@ -1,1 +1,1 @@
-web: DATABASE_URL=postgresql://postgres@find-my-market-api.herokuapp.com/market_api uvicorn app.main:app --HOST=0.0.0.0 --port=${PORT: -5000}
+web: DATABASE_URL=postgresql://postgres@find-my-market-api.herokuapp.com/market_api uvicorn app.main:app
