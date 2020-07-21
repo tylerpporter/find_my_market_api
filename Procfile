@@ -1,1 +1,1 @@
-web: DATABASE_URL=postgresql://postgres@find-my-market-api.herokuapp.com/market_api uvicorn app.main:app
+worker: DATABASE_URL=postgresql://postgres@find-my-market-api.herokuapp.com/market_api uvicorn app.main:app
