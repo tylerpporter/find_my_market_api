@@ -2,7 +2,7 @@ black
 mypy
 flake8
 requests
-pytest
+pytest==4.02
 pytest-cov==2.6.0
 isort
 autoflake
