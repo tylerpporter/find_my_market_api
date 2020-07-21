@@ -2,7 +2,7 @@ language: python
 python:
   - '3.7'
 install:
-  - pip freeze > requirements.txt
   - pip install -r requirements.txt
+  - pip install -r dev-reequirements.txt
 script:
-  - python -m unittest
+  - bash test.sh
