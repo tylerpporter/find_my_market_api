@@ -2,7 +2,7 @@ black
 mypy
 flake8
 requests
-pytest==4.02
+pytest==3.10.1
 pytest-cov==2.6.0
 pytest-remotedata>=0.3.1
 isort
