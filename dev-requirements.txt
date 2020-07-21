@@ -3,7 +3,7 @@ mypy
 flake8
 requests
 pytest
-pytest-cov
+pytest-cov==2.6.0
 isort
 autoflake
 iPython
