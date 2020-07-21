@@ -7,6 +7,7 @@ install:
   - pip install -r requirements.txt
   - pip install -r dev-requirements.txt
 before_script: 
+  - psql -c 'create database market_api;' -U postgres
   - psql -c 'create database market_api_test;' -U postgres
 script:
   - bash test.sh
