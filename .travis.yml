@@ -1,8 +1,13 @@
 language: python
 python:
   - '3.7'
+services:
+  - postgresql
 install:
-  - pip freeze > requirements.txt
   - pip install -r requirements.txt
+  - pip install -r dev-requirements.txt
+before_script: 
+  - psql -c 'create database market_api;' -U postgres
+  - psql -c 'create database market_api_test;' -U postgres
 script:
-  - python -m unittest
+  - bash test.sh
