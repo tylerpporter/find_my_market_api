@@ -2,25 +2,34 @@ from typing import List, Optional
 from pydantic import BaseModel
 
 class MarketBase(BaseModel):
-    fmid: int
+    market_id: int
+
+class Market(MarketBase):
+    id: int
+    class Config:
+        orm_mode = True
 
 class MarketCreate(MarketBase):
     pass
 
-class Market(MarketBase):
-    id: int
-    owner_id: int
-    class Config:
-        orm_mode = True
-
 class UserBase(BaseModel):
     email: str
+
+class User(UserBase):
+    id: int
+    # favorites: List[Favorite] = []
+    class Config:
+        orm_mode = True
 
 class UserCreate(UserBase):
     pass
 
-class User(UserBase):
+class FavoriteBase(BaseModel):
+    market_id: int
+    user_id: int
+
+class Favorite(FavoriteBase):
     id: int
-    markets: List[Market] = []
-    class Config:
-        orm_mode = True
+
+class FavoriteCreate(FavoriteBase):
+    pass
