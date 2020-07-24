@@ -34,11 +34,11 @@ def read_user(user_id: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="User not found")
     return db_user
 
-@app.post("/users/{user_id}/markets/", response_model=schemas.Market)
-def favorite_a_market(
-    user_id: int, market: schemas.MarketCreate, db: Session = Depends(get_db)
-):
-    return crud.favorite_market(db=db, market=market, user_id=user_id)
+# @app.post("/users/{user_id}/markets/", response_model=schemas.Market)
+# def favorite_a_market(
+#     user_id: int, market: schemas.MarketCreate, db: Session = Depends(get_db)
+# ):
+#     return crud.favorite_market(db=db, market=market, user_id=user_id)
 
 @app.get("/markets/", response_model=List[schemas.Market])
 def read_items(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):

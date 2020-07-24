@@ -20,9 +20,9 @@ def create_user(db: Session, user: schemas.UserCreate):
 def get_markets(db: Session, skip: int = 0, limit: int = 100):
     return db.query(models.Market).offset(skip).limit(limit).all()
 
-def favorite_market(db: Session, market: schemas.MarketCreate, user_id: int):
-    db_market = models.Market(**market.dict(), owner_id=user_id)
-    db.add(db_market)
-    db.commit()
-    db.refresh(db_market)
-    return db_market
+# def favorite_market(db: Session, market: schemas.MarketCreate, user_id: int):
+#     db_market = models.Market(**market.dict(), owner_id=user_id)
+#     db.add(db_market)
+#     db.commit()
+#     db.refresh(db_market)
+#     return db_market
