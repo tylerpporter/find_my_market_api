@@ -6,3 +6,4 @@
 /htmlcov/
 /alembic/__pycache__/
 /alembic/versions/__pycache__/
+/tests/models/__pycache__/
