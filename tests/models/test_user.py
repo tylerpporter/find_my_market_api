@@ -31,8 +31,4 @@ def test_create_user(db, cleanup):
     user = crud.create_user(db, user=user_in)
     assert user.email == email
 
-def test_create_user_again(db, cleanup):
-    email = "zach@example.com"
-    user_in = UserCreate(email=email)
-    user = crud.create_user(db, user=user_in)
-    assert user.email == email
+
