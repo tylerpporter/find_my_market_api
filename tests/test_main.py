@@ -14,29 +14,30 @@ from app import crud
 from app.schemas import UserCreate
 from os import getenv
 engine = create_engine(getenv("DATABASE_URL"))
-# TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 Base.metadata.drop_all(bind=engine)
 Base.metadata.create_all(bind=engine)
 
-@pytest.fixture(scope="session")
-def db() -> Generator:
-    yield SessionLocal()
-#
-# @pytest.fixture(scope="session", autouse=True)
-# def clean_up():
-#     Base.metadata.create_all(bind=engine)
-#     yield
-#     Base.metadata.drop_all(bind=engine)
+@pytest.fixture
+def db():
+    Base.metadata.create_all(bind=engine)
+    db = SessionLocal()
+    yield db
+    db.close()
 
-def test_create_user(db: Session):
+@pytest.fixture
+def cleanup():
+    Base.metadata.drop_all(bind=engine)
+    Base.metadata.create_all(bind=engine)
+
+def test_create_user(db, cleanup):
     email = "dan@example.com"
     user_in = UserCreate(email=email)
     user = crud.create_user(db, user=user_in)
     assert user.email == email
 
-def test_create_user_again(db: Session):
-    email = "dan@example.com"
+def test_create_user_again(db, cleanup):
+    email = "zach@example.com"
     user_in = UserCreate(email=email)
     user = crud.create_user(db, user=user_in)
     assert user.email == email
