@@ -3,6 +3,5 @@ from os import getenv
 
 class Settings(BaseSettings):
   database_url: str = "postgresql://postgres@localhost/market_api"
-
+  
 settings = Settings()
-print('database_url', getenv('database_url'))
