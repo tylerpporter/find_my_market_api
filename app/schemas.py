@@ -9,6 +9,9 @@ class Market(MarketBase):
     class Config:
         orm_mode = True
 
+class MarketCreate(MarketBase):
+    pass
+
 class UserBase(BaseModel):
     email: str
 
@@ -27,3 +30,6 @@ class FavoriteBase(BaseModel):
 
 class Favorite(FavoriteBase):
     id: int
+
+class FavoriteCreate(FavoriteBase):
+    pass
