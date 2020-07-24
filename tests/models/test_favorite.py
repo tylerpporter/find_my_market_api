@@ -38,3 +38,4 @@ def test_create_user_favorites(db, cleanup):
   assert favorite.user_id == user.id
   assert favorite.market_id == market.id
   assert user.favorites[0] == market
+  
