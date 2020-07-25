@@ -23,7 +23,11 @@ def read_user(user_id: int, db: Session = Depends(get_db)):
 
 @router.post("/{user_id}/favorites", response_model=schemas.Favorite)
 def favorite_a_market(
-    user_id: int, market_id: int = Body(..., embed=True), db: Session = Depends(get_db)):
-    favorite_in = schemas.FavoriteCreate(user_id=user_id, market_id=market_id)
+    user_id: int, fmid: int = Body(..., embed=True), db: Session = Depends(get_db)):
+    db_market = crud.get_market_by_fmid(db, fmid=fmid)
+    if db_market is None:
+        market_in = schemas.MarketCreate(market_id=fmid)
+        db_market = crud.create_market(db, market=market_in)
+    favorite_in = schemas.FavoriteCreate(user_id=user_id, market_id=db_market.id)
     favorite = crud.favorite_market(db, favorite=favorite_in)
     return favorite
