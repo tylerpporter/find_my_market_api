@@ -51,3 +51,18 @@ def test_can_create_a_favorite_with_no_existing_market(db, cleanup):
     response = client.post(f"/users/{user.id}/favorites",
     json={"fmid": market_id})
     assert response.status_code == 200
+
+def test_it_can_get_all_user_favorites(db, cleanup):
+    market_id = 123456
+    market_in = MarketCreate(market_id=market_id)
+    market = crud.create_market(db, market=market_in)
+    email = "dan@example.com"
+    user_in = UserCreate(email=email)
+    user = crud.create_user(db, user=user_in)
+    client.post(f"/users/{user.id}/favorites",
+    json={"fmid": market_id})
+    response = client.get(f"/users/{user.id}/favorites")
+
+    assert response.status_code == 200
+    resp = response.json()
+    assert resp == [{'market_id': 123456, 'id': 1}]

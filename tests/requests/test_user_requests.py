@@ -52,3 +52,11 @@ def test_can_get_a_single_user(db, cleanup):
     assert response.status_code == 200
     resp = response.json()
     assert resp == {'email': 'dan@example.com', 'id': 1}
+
+def test_it_can_creat_user(db, cleanup):
+    email = 'bob@example.com'
+    response = client.post("/users/",
+    json={"email": email})
+    assert response.status_code == 200
+    resp = response.json()
+    assert resp['email'] == email
