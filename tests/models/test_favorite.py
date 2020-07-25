@@ -39,11 +39,8 @@ def test_create_user_favorites(db, cleanup):
   favorite_in2 = FavoriteCreate(user_id=user.id, market_id=market2.id)
   favorite = crud.favorite_market(db, favorite=favorite_in)
   favorite2 = crud.favorite_market(db, favorite=favorite_in2)
-
   assert favorite.user_id == user.id
   assert favorite.market_id == market.id
   assert len(user.favorites) == 2
   assert user.favorites[0] == market
   assert user.favorites[1] == market2
-  
-  

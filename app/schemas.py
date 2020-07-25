@@ -30,6 +30,8 @@ class FavoriteBase(BaseModel):
 
 class Favorite(FavoriteBase):
     id: int
-
+    class Config:
+        orm_mode = True
+        
 class FavoriteCreate(FavoriteBase):
     pass
