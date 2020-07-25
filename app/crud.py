@@ -27,6 +27,8 @@ def create_market(db: Session, market: schemas.MarketCreate):
 def get_markets(db: Session, skip: int = 0, limit: int = 100):
     return db.query(models.Market).offset(skip).limit(limit).all()
 
+
+
 def favorite_market(db: Session, favorite: schemas.FavoriteCreate):
     db_favorite = models.Favorite(user_id=favorite.user_id, market_id=favorite.market_id)
     db.add(db_favorite)
