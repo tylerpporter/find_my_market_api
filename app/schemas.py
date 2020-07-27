@@ -29,7 +29,7 @@ class UserBase(BaseModel):
 
 class User(UserBase):
     id: int
-    favorites: List[Favorite] = []
+    favorites: List[Market] = []
     class Config:
         orm_mode = True
 
