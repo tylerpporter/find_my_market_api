@@ -27,7 +27,8 @@ def cleanup():
 
 def test_create_user(db, cleanup):
     email = "dan@example.com"
-    user_in = UserCreate(email=email)
+    password = "123456"
+    user_in = UserCreate(email=email, password=password)
     user = crud.create_user(db, user=user_in)
     assert user.email == email
 
