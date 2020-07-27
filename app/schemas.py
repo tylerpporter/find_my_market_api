@@ -1,6 +1,18 @@
 from typing import List, Optional
 from pydantic import BaseModel
 
+class FavoriteBase(BaseModel):
+    market_id: int
+    user_id: int
+
+class Favorite(FavoriteBase):
+    id: int
+    class Config:
+        orm_mode = True
+        
+class FavoriteCreate(FavoriteBase):
+    pass
+
 class MarketBase(BaseModel):
     market_id: int
 
@@ -17,21 +29,18 @@ class UserBase(BaseModel):
 
 class User(UserBase):
     id: int
-    # favorites: List[Favorite] = []
+    favorites: List[Favorite] = []
     class Config:
         orm_mode = True
 
 class UserCreate(UserBase):
-    pass
+    email: str
+    password: str
 
-class FavoriteBase(BaseModel):
-    market_id: int
-    user_id: int
 
-class Favorite(FavoriteBase):
-    id: int
-    class Config:
-        orm_mode = True
-        
-class FavoriteCreate(FavoriteBase):
-    pass
+class Token(BaseModel):
+    access_token: str
+    token_type: str
+
+class TokenPayload(BaseModel):
+    sub: Optional[int] = None
