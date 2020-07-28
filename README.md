@@ -17,7 +17,7 @@ Here you can see a sample of the endpoints on this API. It also generates previe
 ## Documentation for API Endpoints
 
 Type | HTTP request | Description
-------------- | ------------- | -------------
+------------- | ----------------- | -------------
 **users** | **GET** /users/ | Get all users
 **users** | **POST** /users/ | Create a new user
 **users**| **GET** /users/{user_id} | Get single user by ID
