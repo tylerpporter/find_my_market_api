@@ -14,6 +14,16 @@ FastAPI is a newer python framework that offers high performance, is easy to lea
 
 Here you can see a sample of the endpoints on this API. It also generates previews of your schemas defined in your code.
 
+## Documentation for API Endpoints
+
+Type | HTTP request | Description
+------------- | ------------- | -------------
+**users** | **GET** /users/ | Get all users
+**users** | **POST** /users/ | Create a new user
+**users**| **GET** /users/{user_id} | Get single user by ID
+**users** | **POST** /users/{user_id}/favorites | Add a favorite to the user, request must include a fmid identifier for the market
+**users** | **GET** /users/{user_id}/favorites | Get all favorites from one user
+**markets** | **GET** /markets/ | Get all markets
 
 
 ## Running Locally
