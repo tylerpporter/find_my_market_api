@@ -52,3 +52,5 @@ Next run `alembic upgrade head` to run all the migrations. **Note:** You may nee
 The API should be set up now and you can our test suite by using the command `bash test.sh`
 
 **Note on Environment Variables:** If you'd like to change environmental varaibles, they are defined in config.py using a Pydantic Settings object.
+
+![DevelopmentTeam](assets/images/team_index.png)
