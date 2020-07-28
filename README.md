@@ -25,6 +25,13 @@ Type | HTTP request | Description
 **users** | **GET** /users/{user_id}/favorites | Get all favorites from one user
 **markets** | **GET** /markets/ | Get all markets
 
+## Schema Design
+
+We went with a very simple design for this API. We pulled most of the farmers market data used in the app from a separate API we built out, which allowed us to keep this API lightweight and keep our tables simple.
+
+![schema](https://user-images.githubusercontent.com/58053916/88712085-66882a80-d0d6-11ea-946a-db632eb2525f.png)
+
+**Note:** The fmid column shown on markets here is pulled from an external api. You can view those docs [here](https://github.com/tylerpporter/us_farmers_market_api).
 
 ## Running Locally
 
