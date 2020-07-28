@@ -1,10 +1,10 @@
-# Find My Market API
+![FMM_banner_logo_final](https://user-images.githubusercontent.com/56200182/88703202-a5fc4a00-d0c9-11ea-87ac-cbd2ae18bd42.png)
 
 Welcome to Find My Market! This repo is the backend that our app uses to store it's users and their favorites.
 
 ## Technology & Framework
 
-The API for Find My Market was built in python using the [FastAPI](https://pypi.org/project/fastapi/) framework. Find My Market is hosted on Heroku, and we used TravisCI for contiunous integration. You can view the swagger docs of this API's endpoints [here](https://find-my-market-api.herokuapp.com/docs).
+The API for Find My Market was built in python using the [FastAPI](https://pypi.org/project/fastapi/) framework. We used [Pydantic](https://pydantic-docs.helpmanual.io/#example) for model definition, [SQLAlchemy](https://www.sqlalchemy.org/) as our orm, [Postgres](https://www.postgresql.org/) as our database, and [Pytest](https://docs.pytest.org/en/stable/) as our testing framework. Find My Market is hosted on Heroku, and we used TravisCI for contiunous integration. You can view the swagger docs of this API's endpoints [here](https://find-my-market-api.herokuapp.com/docs).
 
 ## Why FastAPI?
 
@@ -50,6 +50,8 @@ This API uses a postgresql database so you'll need to create two: `market_api` a
 Next run `alembic upgrade head` to run all the migrations. **Note:** You may need to set your `PYTHONPATH` variable if you get the error `module app not found`. This can be done by running the command `export PYTHONPATH="$PYTHONPATH:/path/to/where/the/folder/is/located"` and then you can run `alembic upgrade head`.
 
 The API should be set up now and you can our test suite by using the command `bash test.sh`
+
+To run the local server use `uvicorn app.main:app --reload`. Open up postman and send your requests to `http://localhost:8000/<endpoints>`
 
 **Note on Environment Variables:** If you'd like to change environmental varaibles, they are defined in config.py using a Pydantic Settings object.
 
