@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/tylerpporter/find_my_market_api.svg?branch=master)](https://travis-ci.com/tylerpporter/find_my_market_api)
+
 ![FMM_banner_logo_final](https://user-images.githubusercontent.com/56200182/88703202-a5fc4a00-d0c9-11ea-87ac-cbd2ae18bd42.png)
 
 Welcome to Find My Market! This repo is the backend that our app uses to store it's users and their favorites.
