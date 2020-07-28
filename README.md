@@ -2,9 +2,19 @@
 
 Welcome to Find My Market! This repo is the backend that our app uses to store it's users and their favorites.
 
-## Technology & Frameowkrs
+## Technology & Framework
 
 The API for Find My Market was built in python using the [FastAPI](https://pypi.org/project/fastapi/) framework. Find My Market is hosted on Heroku, and we used TravisCI for contiunous integration. You can view the swagger docs of this API's endpoints [here](https://find-my-market-api.herokuapp.com/docs).
+
+## Why FastAPI?
+
+FastAPI is a newer python framework that offers high performance, is easy to learn, and shortens the process from development to production. We only had two weeks to complete this so a framework with an easier learning curve was a great choice for us. Another awesome feature of FastAPI is that it generates swagger [docs](https://find-my-market-api.herokuapp.com/docs) for your endpoints automatically. 
+
+![docs](https://user-images.githubusercontent.com/58053916/88704900-02606900-d0cc-11ea-9041-fb83ef12599e.png)
+
+Here you can see a sample of the endpoints on this API. It also generates previews of your schemas defined in your code.
+
+
 
 ## Running Locally
 
