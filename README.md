@@ -19,3 +19,5 @@ This API uses a postgresql database so you'll need to create two: `market_api` a
 Next run `alembic upgrade head` to run all the migrations. **Note:** You may need to set your `PYTHONPATH` variable if you get the error `module app not found`. This can be done by running the command `export PYTHONPATH="$PYTHONPATH:/path/to/where/the/folder/is/located"` and then you can run `alembic upgrade head`
 
 The API should be set up now and you can our test suite by using the command `bash test.sh`
+
+**Note on Environment Variables:** If you'd like to change environmental varaibles, they are defined in config.py using a Pydantic Settings object.
