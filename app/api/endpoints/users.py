@@ -40,8 +40,8 @@ def favorite_a_market(
     favorite = crud.favorite_market(db, favorite=favorite_in)
     return favorite
 
-@router.get("/{user_id}/favorites", response_model=List[schemas.Market])
+@router.get("/{user_id}/favorites", response_model=schemas.User)
 def get_favorites(
     user_id: int, db: Session = Depends(get_db)):
     db_user = crud.get_user(db, user_id=user_id)
-    return db_user.favorites
+    return db_user

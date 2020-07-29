@@ -68,4 +68,4 @@ def test_it_can_get_all_user_favorites(db, cleanup):
 
     assert response.status_code == 200
     resp = response.json()
-    assert resp == [{'market_id': 123456, 'id': 1}]
+    assert resp['favorites'] == [{'market_id': 123456, 'id': 1}]
