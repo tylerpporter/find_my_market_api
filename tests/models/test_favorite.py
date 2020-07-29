@@ -27,9 +27,10 @@ def cleanup():
 
 def test_create_user_favorites(db, cleanup):
   email = "bob@example.com"
+  password = "123456"
   market_id = 1
   market_id2 = 2
-  user_in = UserCreate(email=email)
+  user_in = UserCreate(email=email, password=password)
   market_in = MarketCreate(market_id=market_id)
   market_in2 = MarketCreate(market_id=market_id2)
   user = crud.create_user(db, user=user_in)

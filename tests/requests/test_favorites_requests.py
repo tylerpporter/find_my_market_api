@@ -34,7 +34,8 @@ def test_can_create_a_favorite_with_existing_market_in_db(db, cleanup):
     market_in = MarketCreate(market_id=market_id)
     market = crud.create_market(db, market=market_in)
     email = "dan@example.com"
-    user_in = UserCreate(email=email)
+    password = "123456"
+    user_in = UserCreate(email=email, password=password)
     user = crud.create_user(db, user=user_in)
     response = client.post(f"/users/{user.id}/favorites",
     json={"fmid": market_id})
@@ -46,7 +47,8 @@ def test_can_create_a_favorite_with_existing_market_in_db(db, cleanup):
 def test_can_create_a_favorite_with_no_existing_market(db, cleanup):
     market_id = 123
     email = "dan@example.com"
-    user_in = UserCreate(email=email)
+    password = "123456"
+    user_in = UserCreate(email=email, password=password)
     user = crud.create_user(db, user=user_in)
     response = client.post(f"/users/{user.id}/favorites",
     json={"fmid": market_id})
@@ -57,7 +59,8 @@ def test_it_can_get_all_user_favorites(db, cleanup):
     market_in = MarketCreate(market_id=market_id)
     market = crud.create_market(db, market=market_in)
     email = "dan@example.com"
-    user_in = UserCreate(email=email)
+    password = "123456"
+    user_in = UserCreate(email=email, password=password)
     user = crud.create_user(db, user=user_in)
     client.post(f"/users/{user.id}/favorites",
     json={"fmid": market_id})

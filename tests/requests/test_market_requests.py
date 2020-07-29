@@ -40,9 +40,3 @@ def test_can_get_all_markets(db, cleanup):
     assert response.status_code == 200
     resp = response.json()
     assert resp == [{'market_id': 123456, 'id': 1}, {'market_id': 234567, 'id': 2}]
-
-# def test_create_market(db, cleanup):
-#   market_id = 1
-#   market_in = MarketCreate(market_id=market_id)
-#   market = crud.create_market(db, market=market_in)
-#   assert market.market_id == 1

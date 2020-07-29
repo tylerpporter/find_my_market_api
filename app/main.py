@@ -8,4 +8,3 @@ from app.api.routes import api_router
 app = FastAPI()
 app.include_router(api_router)
 
-#  WAITING FOR O-AUTH TO IMPLEMENT CREATE USER
