@@ -10,3 +10,5 @@
 /app/api/__pycache__
 /app/api/endpoints/__pycache__
 /tests/requests/__pycache__
+/app/schemas/__pycache__
+/app/models/__pycache__

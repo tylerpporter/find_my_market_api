@@ -1,6 +1,7 @@
 from sqlalchemy.orm import Session
 from . import models, schemas
 from app.security import get_hashed_password, verify_password
+from IPython import embed
 
 def get_user(db: Session, user_id: int):
     return db.query(models.User).filter(models.User.id == user_id).first()
@@ -48,3 +49,15 @@ def favorite_market(db: Session, favorite: schemas.FavoriteCreate):
     db.commit()
     db.refresh(db_favorite)
     return db_favorite
+
+def delete_user_favorite(db: Session, user_id: int, market_id: int):
+    db_fav = get_favorite(db, user_id=user_id, market_id=market_id)
+    db.delete(db_fav)
+    db.commit()
+    user = get_user(db, user_id=user_id)
+    return user
+
+def get_favorite(db: Session, user_id: int, market_id: int):
+    db_market = db.query(models.Market).filter(models.Market.market_id == market_id).first().id
+    db_fav = db.query(models.Favorite).filter(models.Favorite.user_id == user_id).filter(models.Favorite.market_id == db_market).first()
+    return db_fav
