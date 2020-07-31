@@ -41,7 +41,7 @@ def test_can_create_a_favorite_with_existing_market_in_db(db, cleanup):
     json={"fmid": market_id})
     assert response.status_code == 200
     resp = response.json()
-    assert resp == {'market_id': 1, 'user_id': 1, 'id': 1}
+    assert resp['favorites'] == [{'market_id': 123456, 'id': 1}]
     assert user.favorites[0].market_id == 123456
 
 def test_can_create_a_favorite_with_no_existing_market(db, cleanup):
@@ -53,6 +53,22 @@ def test_can_create_a_favorite_with_no_existing_market(db, cleanup):
     response = client.post(f"/users/{user.id}/favorites",
     json={"fmid": market_id})
     assert response.status_code == 200
+
+def test_it_cant_create_a_favorite_if_user_already_has_one(db, cleanup):
+    market_id = 123
+    email = "dan@example.com"
+    password = "123456"
+    user_in = UserCreate(email=email, password=password)
+    user = crud.create_user(db, user=user_in)
+    market_in = MarketCreate(market_id=market_id)
+    market = crud.create_market(db, market=market_in)
+    favorite_in = FavoriteCreate(user_id= user.id, market_id=market.id)
+    favorite = crud.favorite_market(db, favorite=favorite_in)
+    response = client.post(f"/users/{user.id}/favorites",
+    json={"fmid": market_id})
+    assert response.status_code == 400
+    resp = response.json()
+    # assert 
 
 def test_it_can_get_all_user_favorites(db, cleanup):
     market_id = 123456
@@ -88,5 +104,7 @@ def test_it_can_delete_user_favorites(db, cleanup):
     response2 = client.delete(f"/users/{user.id}/favorites",
     json={"fmid": market_id})
     user_resp2 = response2.json()
+    assert response2.status_code == 200
 
+    assert user_resp2['favorites'] == []
     assert len(user_resp2['favorites']) == 0
