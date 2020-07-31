@@ -45,3 +45,10 @@ def get_favorites(
     user_id: int, db: Session = Depends(get_db)):
     db_user = crud.get_user(db, user_id=user_id)
     return db_user
+
+@router.delete("/{user_id}/favorites", response_model=schemas.User)
+def delete_favorites(
+    user_id: int, db: Session = Depends(get_db), fmid: int = Body(..., embed=True)):
+    db_favorite = crud.delete_user_favorite(db, user_id=user_id, market_id=fmid)
+    db_user = crud.get_user(db, user_id=user_id)
+    return db_user
