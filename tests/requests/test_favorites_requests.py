@@ -68,7 +68,7 @@ def test_it_cant_create_a_favorite_if_user_already_has_one(db, cleanup):
     json={"fmid": market_id})
     assert response.status_code == 400
     resp = response.json()
-    # assert 
+    assert resp['detail'] == 'That market is already favorited!'
 
 def test_it_can_get_all_user_favorites(db, cleanup):
     market_id = 123456
