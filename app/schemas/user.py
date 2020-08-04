@@ -1,9 +1,10 @@
 from typing import List
 from pydantic import BaseModel
+from pydantic import EmailStr
 from .market import Market
 
 class UserBase(BaseModel):
-    email: str
+    email: EmailStr
 
 class User(UserBase):
     id: int
@@ -12,5 +13,5 @@ class User(UserBase):
         orm_mode = True
 
 class UserCreate(UserBase):
-    email: str
+    email: EmailStr
     password: str
