@@ -16,6 +16,7 @@ click==7.1.2
 coverage==5.2
 cryptography==3.0
 decorator==4.4.2
+email-validator
 ecdsa==0.15
 fastapi==0.60.0
 flake8==3.8.3
