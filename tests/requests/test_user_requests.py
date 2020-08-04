@@ -65,3 +65,12 @@ def test_it_can_register_a_user(db, cleanup):
     resp = response.json()
     assert resp['email'] == email
     assert resp['id'] == 1
+
+def test_it_cant_register_a_user_without_email(db, cleanup):
+    email = 'bob'
+    password = '123456'
+    response = client.post("/users/register",
+    json={"email": email, "password": password})
+    resp = response.json()
+    assert resp['detail'][0]['msg'] == 'value is not a valid email address'
+    
