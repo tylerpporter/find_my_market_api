@@ -1,4 +1,6 @@
 from sqlalchemy.orm import Session
+from fastapi.encoders import jsonable_encoder
+from typing import Any, Dict, Union
 from . import models, schemas
 from app.security import get_hashed_password, verify_password
 from IPython import embed
@@ -23,12 +25,32 @@ def authenticate_user(db: Session, email: str, password: str):
 def create_user(db: Session, user: schemas.UserCreate):
     db_user = models.User(
         email=user.email,
-        hashed_password=get_hashed_password(user.password)
+        hashed_password=get_hashed_password(user.password),
+        image=(user.image),
+        username=(user.username)
         )
     db.add(db_user)
     db.commit()
     db.refresh(db_user)
     return db_user
+
+def update_user(db: Session, db_obj: models.User, obj_in: Union[schemas.UserUpdate, Dict[str, Any]]):
+    user_data = jsonable_encoder(db_obj)
+    if isinstance(obj_in, dict):
+        update_data = obj_in
+    else:
+        update_data = obj_in.dict(exclude_unset=True)
+    if update_data.get("password"):
+        hashed_password=get_hashed_password(update_data['password'])
+        del update_data['password']
+        update_data['hashed_password'] = hashed_password
+    for field in user_data:
+        if field in update_data:
+            setattr(db_obj, field, update_data[field])
+    db.add(db_obj)
+    db.commit()
+    db.refresh(db_obj)
+    return db_obj
 
 def create_market(db: Session, market: schemas.MarketCreate):
     db_market = models.Market(market_id=market.market_id)

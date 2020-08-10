@@ -20,6 +20,9 @@ class UserCreate(UserBase):
     image: Optional[str]
     username: Optional[str]
 
-# class UserUpdate(UserBase):
-#     email: EmailStr
+class UserUpdate(UserBase):
+    email: Optional[EmailStr]
+    password: Optional[str]
+    image: Optional[str]
+    username: Optional[str]
     
