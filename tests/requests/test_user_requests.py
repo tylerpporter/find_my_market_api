@@ -42,8 +42,8 @@ def test_can_get_all_users(db, cleanup):
     response = client.get("/users/")
     assert response.status_code == 200
     resp = response.json()
-    assert resp == [{'email': 'dan@example.com', 'id': 1, 'favorites': []},
-                    {'email': 'bob@example.com', 'id': 2, 'favorites': []}]
+    assert resp[0]['email'] == 'dan@example.com'
+    assert resp[1]['email'] == 'bob@example.com'
     assert len(resp) == 2
 
 def test_can_get_a_single_user(db, cleanup):
@@ -54,7 +54,9 @@ def test_can_get_a_single_user(db, cleanup):
     response = client.get("/users/1")
     assert response.status_code == 200
     resp = response.json()
-    assert resp == {'email': 'dan@example.com', 'id': 1, 'favorites': []}
+    assert resp['email'] == 'dan@example.com'
+    assert resp['id'] == 1
+    assert resp['favorites'] == []
 
 def test_it_can_register_a_user(db, cleanup):
     email = 'bob@example.com'
