@@ -75,4 +75,38 @@ def test_it_cant_register_a_user_without_email(db, cleanup):
     json={"email": email, "password": password})
     resp = response.json()
     assert resp['detail'][0]['msg'] == 'value is not a valid email address'
-    
+
+def test_it_can_update_a_user(db, cleanup):
+    email = "dan@example.com"
+    password = "123456"
+    user_in = UserCreate(email=email, password=password)
+    user = crud.create_user(db, user=user_in)
+    update_response = client.put(f"/users/{user.id}", 
+    json={"username": "chunky_lover"})
+    assert update_response.status_code == 200
+
+    resp = update_response.json()
+    assert resp['username'] == 'chunky_lover'
+
+    update_response2 = client.put(f"/users/{user.id}", 
+    json={"email": "chunky_lover@gmail.com", "image": "dancing_cat.jpg"})
+    assert update_response2.status_code == 200
+    resp2 = update_response2.json()
+    assert resp2['image'] == "dancing_cat.jpg"
+    assert resp2['email'] == 'chunky_lover@gmail.com'
+
+def test_it_can_update_a_users_password(db, cleanup):
+    email = "dan@example.com"
+    password = "123456"
+    user_in = UserCreate(email=email, password=password)
+    user = crud.create_user(db, user=user_in)
+    update_response = client.put(f"/users/{user.id}", 
+    json={"password": "apple"})
+    assert update_response.status_code == 200
+
+    response = client.post("/login/token",
+    data={"username": email, "password": 'apple'})
+    token = response.json()
+    assert response.status_code == 200
+    assert "access_token" in token
+    assert token["access_token"]
