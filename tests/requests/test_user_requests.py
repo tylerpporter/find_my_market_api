@@ -95,6 +95,11 @@ def test_it_can_update_a_user(db, cleanup):
     assert resp2['image'] == "dancing_cat.jpg"
     assert resp2['email'] == 'chunky_lover@gmail.com'
 
+def test_it_cant_update_a_user_that_doesnt_exist(db, cleanup):
+    update_response = client.put("/users/1",
+    json={"username": "chunky_lover", "email": "bob@example.com"})
+    assert update_response.status_code == 404
+
 def test_it_can_update_a_users_password(db, cleanup):
     email = "dan@example.com"
     password = "123456"
