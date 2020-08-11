@@ -17,7 +17,7 @@ class User(UserBase):
 class UserCreate(UserBase):
     email: EmailStr
     password: str
-    image: Optional[str]
+    image: Optional[str] = ""
     username: Optional[str]
 
 class UserUpdate(UserBase):
