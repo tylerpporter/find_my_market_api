@@ -5,7 +5,6 @@ from sqlalchemy.orm import Session
 from app import crud, models, schemas
 from app.api.deps import get_db
 from IPython import embed
-# from app.core.config import settings
 
 router = APIRouter()
 
@@ -57,3 +56,16 @@ def delete_favorites(
     db_favorite = crud.delete_user_favorite(db, user_id=user_id, market_id=fmid)
     db_user = crud.get_user(db, user_id=user_id)
     return db_user
+
+@router.put("/{user_id}", response_model=schemas.User)
+def update_user(
+    user_id: int, user_in: schemas.UserUpdate, db: Session = Depends(get_db)
+):
+    db_user = crud.get_user(db, user_id=user_id)
+    if not db_user:
+        raise HTTPException(
+            status_code=404,
+            detail="This user doesn't exist in the system"
+    )
+    user = crud.update_user(db, db_obj=db_user, obj_in=user_in)
+    return user

@@ -28,8 +28,12 @@ def cleanup():
 def test_create_user(db, cleanup):
     email = "dan@example.com"
     password = "123456"
-    user_in = UserCreate(email=email, password=password)
+    username = "chunky_lover"
+    image = "12674.jpg"
+    user_in = UserCreate(email=email, password=password, username=username, image=image)
     user = crud.create_user(db, user=user_in)
     assert user.email == email
+    assert user.username == username
+    assert user.image == image
 
 
